@@ -2,11 +2,10 @@
 
 import axios from 'axios';
 import "easymde/dist/easymde.min.css";
-import {useForm, Controller} from "react-hook-form";
+import {Controller, useForm} from "react-hook-form";
 import {useRouter} from "next/navigation";
 
 import {Button, TextField} from '@radix-ui/themes'
-import {HiMiniMagnifyingGlass} from "react-icons/hi2";
 import SimpleMDE from "react-simplemde-editor";
 
 interface IssueForm {
@@ -37,11 +36,9 @@ const NewIssuePage = () => {
             }
             className="max-w-xl space-y-4"
         >
-            <TextField.Root {...register("title", {required: true})} >
-                <TextField.Slot>
-                    <HiMiniMagnifyingGlass/>
-                </TextField.Slot>
-            </TextField.Root>
+            <TextField.Root
+                {...register("title", {required: true})}
+            />
             <Controller
                 name="description"
                 control={control}
@@ -60,7 +57,7 @@ const NewIssuePage = () => {
                 Submit New Issue
             </Button>
         </form>
-    );
+    )
 };
 
 export default NewIssuePage;
