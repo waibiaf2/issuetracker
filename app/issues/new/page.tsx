@@ -21,17 +21,19 @@ const NewIssuePage = () => {
     const {register, handleSubmit, control} = useForm<IssueForm>();
     const router = useRouter();
 
+    const handSubmitHandler = async (data: IssueForm) => {
+        try {
+            await axios.post('/api/issues', data)
+            router.push('/issues');
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     return (
         <form
             onSubmit = {
-                handleSubmit( async (data) => {
-                    try {
-                        await axios.post('/api/issues', data)
-                        router.push('/issues');
-                    } catch (err) {
-                        console.log(err);
-                    }
-                })
+                handleSubmit((data) => handSubmitHandler(data) )
             }
             className="max-w-xl space-y-4"
         >
