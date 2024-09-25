@@ -12,13 +12,18 @@ import {useRouter} from "next/navigation";
 interface IssueForm {
     title: string;
     description: string;
+    status?: string;
+    createdAt?: string;
+    updatedAt?: string;
 }
+
+
 
 const NewIssuePage = () => {
     const {register, handleSubmit, control} = useForm<IssueForm>();
     const router = useRouter();
 
-    const submitData = async (data) => {
+    const submitData = async (data: IssueForm) => {
        await  axios.post('/api/issues', data)
             .then((response) => {
                 console.log('Data submitted successfully.',response);
