@@ -10,6 +10,7 @@ import {z} from "zod";
 
 import {Button, TextField, Text} from '@radix-ui/themes'
 import {createIssueSchema} from "@/app/validationSchemas";
+import ErrorMessage from "@/app/components/ErrorMessage";
 
 type IssueForm = z.infer<typeof createIssueSchema>;
 
@@ -38,13 +39,9 @@ const NewIssuePage = () => {
             <TextField.Root
                 {...register("title", {required: true})}
             />
-
-            {
-                errors.title &&
-                <Text color="red" as="p">
-                    {errors.title.message}
-                </Text>
-            }
+            <ErrorMessage>
+                {errors.title?.message}
+            </ErrorMessage>
 
             <Controller
                 name="description"
@@ -56,14 +53,9 @@ const NewIssuePage = () => {
                     />
                 }
             />
-
-            {
-                errors.description &&
-                <Text color="red" as="p">
-                    {errors.description.message}
-                </Text>
-
-            }
+            <ErrorMessage>
+                {errors.description?.message}
+            </ErrorMessage>
 
             <Button
                 type="submit"
