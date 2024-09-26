@@ -8,14 +8,19 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import SimpleMDE from "react-simplemde-editor";
 import {z} from "zod";
 
-import {Button, TextField, Text} from '@radix-ui/themes'
+import {Button, Spinner, TextField} from '@radix-ui/themes'
 import {createIssueSchema} from "@/app/validationSchemas";
 import ErrorMessage from "@/app/components/ErrorMessage";
 
 type IssueForm = z.infer<typeof createIssueSchema>;
 
 const NewIssuePage = () => {
-    const {register, handleSubmit, control, formState: {errors}} = useForm<IssueForm>({
+    const {
+        register,
+        handleSubmit,
+        control,
+        formState: {errors, isSubmitting}
+    } = useForm<IssueForm>({
         resolver: zodResolver(createIssueSchema)
     });
     const router = useRouter();
@@ -58,10 +63,12 @@ const NewIssuePage = () => {
             </ErrorMessage>
 
             <Button
+                disabled={isSubmitting}
                 type="submit"
                 size={"3"}
                 className="hover:cursor-pointer"
             >
+                {isSubmitting ? <Spinner /> : ""}
                 Submit New Issue
             </Button>
         </form>
