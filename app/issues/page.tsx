@@ -29,23 +29,27 @@ const IssuesPage = async () => {
                     <Table.Row>
                         <Table.ColumnHeaderCell>
                             ID
+                            <div  className="block md:hidden">
+                                <Table.ColumnHeaderCell>
+                                    Status
+                                </Table.ColumnHeaderCell>
+                            </div>
                         </Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell
                             className="hidden md:table-cell "
                         >
                             Status
                         </Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell
+                            className="hidden md:table-cell "
+                        >
+                            Created At
+                        </Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>
                             Title
                         </Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>
                             Description
-                        </Table.ColumnHeaderCell>
-
-                        <Table.ColumnHeaderCell
-                            className="hidden md:table-cell "
-                        >
-                            Created At
                         </Table.ColumnHeaderCell>
                     </Table.Row>
                 </Table.Header>
