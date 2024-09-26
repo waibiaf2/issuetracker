@@ -29,27 +29,22 @@ const IssuesPage = async () => {
                     <Table.Row>
                         <Table.ColumnHeaderCell>
                             ID
-                            <div  className="block md:hidden">
-                                <Table.ColumnHeaderCell>
-                                    Status
-                                </Table.ColumnHeaderCell>
-                            </div>
                         </Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell
                             className="hidden md:table-cell "
                         >
                             Status
                         </Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell
-                            className="hidden md:table-cell "
-                        >
-                            Created At
-                        </Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell >
                             Title
                         </Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>
                             Description
+                        </Table.ColumnHeaderCell>
+                        <Table.ColumnHeaderCell
+                            className="hidden md:table-cell "
+                        >
+                            Created At
                         </Table.ColumnHeaderCell>
                     </Table.Row>
                 </Table.Header>
@@ -70,9 +65,8 @@ const IssuesPage = async () => {
                                 </Table.Cell>
                                 <Table.Cell>{issue.title}</Table.Cell>
                                 <Table.Cell>{issue.description}</Table.Cell>
-
                                 <Table.Cell className="hidden md:table-cell ">
-                                    {issue.createdAt.toDateString()}
+                                    {issue.createdAt.toLocaleDateString('en-UK')}
                                 </Table.Cell>
                             </Table.Row>
                         )
