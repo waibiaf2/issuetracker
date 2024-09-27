@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {Button, Table} from "@radix-ui/themes";
+import {Table} from "@radix-ui/themes";
 import prisma from "@/prisma/client";
 import IssueStatusBadge from "@/app/components/IssueStatusBadge";
 import delay from "delay";
@@ -21,7 +21,7 @@ const IssuesPage = async () => {
     return (
         <div>
 
-            <IssueActions />
+            <IssueActions/>
 
             <Table.Root variant="surface">
                 <Table.Header>
@@ -34,7 +34,7 @@ const IssuesPage = async () => {
                         >
                             Status
                         </Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell >
+                        <Table.ColumnHeaderCell>
                             Title
                         </Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>
@@ -60,9 +60,13 @@ const IssuesPage = async () => {
                                     </div>
                                 </Table.RowHeaderCell>
                                 <Table.Cell className="hidden md:table-cell ">
-                                    <IssueStatusBadge status={issue.status} />
+                                    <IssueStatusBadge status={issue.status}/>
                                 </Table.Cell>
-                                <Table.Cell>{issue.title}</Table.Cell>
+                                <Table.Cell>
+                                    <Link href={`/issues/${issue.id}`} className="hover:cursor-pointer text-blue-500">
+                                        {issue.title}
+                                    </Link>
+                                </Table.Cell>
                                 <Table.Cell>{issue.description}</Table.Cell>
                                 <Table.Cell className="hidden md:table-cell ">
                                     {issue.createdAt.toLocaleDateString('en-UK')}
