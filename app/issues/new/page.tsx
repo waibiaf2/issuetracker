@@ -23,6 +23,7 @@ const NewIssuePage = () => {
     } = useForm<IssueForm>({
         resolver: zodResolver(createIssueSchema)
     });
+
     const router = useRouter();
 
     const submitHandler = async (data: IssueForm) => {
@@ -37,7 +38,9 @@ const NewIssuePage = () => {
     return (
         <form
             onSubmit={
-                handleSubmit((data) => submitHandler(data))
+                handleSubmit(data =>
+                    submitHandler(data)
+                )
             }
             className="max-w-xl space-y-4"
         >
@@ -61,7 +64,6 @@ const NewIssuePage = () => {
             <ErrorMessage>
                 {errors.description?.message}
             </ErrorMessage>
-
             <Button
                 disabled={isSubmitting}
                 type="submit"
