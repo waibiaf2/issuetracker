@@ -38,8 +38,10 @@ const NewIssuePage = () => {
     return (
         <form
             onSubmit={
-                handleSubmit(data =>
-                    submitHandler(data)
+                handleSubmit(data => {
+                        console.log(data);
+                        submitHandler(data);
+                    }
                 )
             }
             className="max-w-xl space-y-4"
@@ -70,7 +72,7 @@ const NewIssuePage = () => {
                 size={"3"}
                 className="hover:cursor-pointer"
             >
-                {isSubmitting ? <Spinner /> : ""}
+                {isSubmitting ? <Spinner/> : ""}
                 Submit New Issue
             </Button>
         </form>

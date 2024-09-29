@@ -1,9 +1,13 @@
-import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 import {Table} from "@radix-ui/themes";
 import prisma from "@/prisma/client";
-import IssueStatusBadge from "@/app/components/IssueStatusBadge";
 import delay from "delay";
+
+import IssueStatusBadge from "@/app/components/IssueStatusBadge";
 import IssueActions from "@/app/issues/IssueActions";
+import Link from "@/app/components/Link";
+
+
 
 const IssuesPage = async () => {
     const issues = await prisma.issue.findMany({
@@ -67,7 +71,11 @@ const IssuesPage = async () => {
                                         {issue.title}
                                     </Link>
                                 </Table.Cell>
-                                <Table.Cell>{issue.description}</Table.Cell>
+                                <Table.Cell className="prose">
+                                    <ReactMarkdown>
+                                        {issue.description}
+                                    </ReactMarkdown>
+                                </Table.Cell>
                                 <Table.Cell className="hidden md:table-cell ">
                                     {issue.createdAt.toLocaleDateString('en-UK')}
                                 </Table.Cell>

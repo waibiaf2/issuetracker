@@ -2,6 +2,8 @@ import React from 'react';
 import prisma from "@/prisma/client";
 import {notFound} from "next/navigation";
 import delay from "delay";
+import ReactMarkdown from "react-markdown";
+
 import {Card, Flex, Heading, Text} from "@radix-ui/themes";
 import IssueStatusBadge from "@/app/components/IssueStatusBadge";
 
@@ -28,13 +30,17 @@ const IssueDetailsPage = async (
     delay(2000);
 
     return (
-        <div>
-            <Heading>{issue?.title}</Heading>
+        <div className="space-y-4">
+            <Heading>{issue.title}</Heading>
             <Flex gap={"3"} my={"2"}>
-                <IssueStatusBadge status={issue?.status}/> |
-                <Text>{issue?.createdAt.toLocaleDateString('en-UK')}</Text>
+                <IssueStatusBadge status={issue.status}/> |
+                <Text>{issue.createdAt.toLocaleDateString('en-UK')}</Text>
             </Flex>
-            <Card>{issue?.description}</Card>
+            <Card className="prose" mt="4">
+                <ReactMarkdown>
+                    {issue.description}
+                </ReactMarkdown>
+            </Card>
         </div>
     );
 };
