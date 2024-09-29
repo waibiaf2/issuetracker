@@ -11,7 +11,11 @@ import {z} from "zod";
 import {Button, Spinner, TextField} from '@radix-ui/themes'
 import {createIssueSchema} from "@/app/validationSchemas";
 import ErrorMessage from "@/app/components/ErrorMessage";
-import delay from "delay";
+
+/*const SimpleMDE = dynamic(
+    () => import("react-simplemde-editor"),
+    {ssr: false}
+);*/
 
 type IssueForm = z.infer<typeof createIssueSchema>;
 
