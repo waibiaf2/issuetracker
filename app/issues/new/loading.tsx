@@ -1,10 +1,15 @@
 import React from 'react';
+import {Box} from "@radix-ui/themes";
+import Skeleton from "react-loading-skeleton";
 
 const Loading = () => {
     return (
-        <div>
-            Loading....
-        </div>
+        <Box className='max-w-xl'>
+            <Skeleton height="2rem"/>
+            <Skeleton height="35rem"/>
+            <Skeleton width="30%" height="3rem"/>
+        </Box>
+
     );
 };
 

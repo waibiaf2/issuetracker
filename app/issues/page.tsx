@@ -20,8 +20,6 @@ const IssuesPage = async () => {
         }
     });
 
-    await delay(2000);
-
     return (
         <div>
 

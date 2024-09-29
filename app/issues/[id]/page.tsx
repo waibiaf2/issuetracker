@@ -1,10 +1,9 @@
 import React from 'react';
 import prisma from "@/prisma/client";
 import {notFound} from "next/navigation";
-import delay from "delay";
 import ReactMarkdown from "react-markdown";
 
-import {Card, Flex, Heading, Text} from "@radix-ui/themes";
+import {Box, Card, Flex, Heading, Text} from "@radix-ui/themes";
 import IssueStatusBadge from "@/app/components/IssueStatusBadge";
 
 interface Props {
@@ -27,10 +26,9 @@ const IssueDetailsPage = async (
         return notFound();
     }
 
-    delay(2000);
 
     return (
-        <div className="space-y-4">
+        <Box className="space-y-4">
             <Heading>{issue.title}</Heading>
             <Flex gap={"3"} my={"2"}>
                 <IssueStatusBadge status={issue.status}/> |
@@ -41,7 +39,7 @@ const IssueDetailsPage = async (
                     {issue.description}
                 </ReactMarkdown>
             </Card>
-        </div>
+        </Box>
     );
 };
 
