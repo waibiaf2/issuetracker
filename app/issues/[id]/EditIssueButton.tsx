@@ -2,9 +2,8 @@ import {Button} from "@radix-ui/themes";
 import {Pencil2Icon} from "@radix-ui/react-icons";
 import Link from "next/link";
 
-
-
-const EditIssueButton = ({issueId}:{issueId:number}) => {
+const EditIssueButton = ({issueId}:{issueId:number}
+) => {
     return (
         <Button size="3">
             <Pencil2Icon/>

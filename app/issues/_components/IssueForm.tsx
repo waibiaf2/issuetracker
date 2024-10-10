@@ -11,80 +11,90 @@ import dynamic from "next/dynamic";
 
 import {Issue} from "@prisma/client";
 import {Button, Spinner, TextField} from '@radix-ui/themes'
-import {createIssueSchema} from "@/app/validationSchemas";
+import {issueSchema} from "@/app/validationSchemas";
 import ErrorMessage from "@/app/components/ErrorMessage";
+import {useState} from "react";
 
 const SimpleMDE = dynamic(
     () => import("react-simplemde-editor"),
     {ssr: false}
 );
 
-type IssueFormData= z.infer<typeof createIssueSchema>;
+type IssueFormData = z.infer<typeof issueSchema>;
 
-const IssueForm =  ({issue}: {issue?: Issue}) => {
+const IssueForm = ({issue}: { issue?: Issue }) => {
+
     const {
         register,
         handleSubmit,
         control,
         formState: {errors, isSubmitting}
     } = useForm<IssueFormData>({
-        resolver: zodResolver(createIssueSchema)
-    });
+        resolver: zodResolver(issueSchema)
+    })
 
     const router = useRouter();
 
-    const submitHandler = async (data: IssueFormData) => {
-        try {
-            await axios.post('/api/issues', data);
-            router.push('/issues');
-        } catch (err) {
-            console.log(err);
+    const submitHandler =
+        async (data: IssueFormData) => {
+            try {
+                if (issue) {
+                    await axios.patch('/api/issues/' + issue.id, data);
+                    console.log("Successfully updated issue");
+                }else {
+                    await axios.post('/api/issues', data);
+                    console.log("Successfully created new issue");
+                }
+
+                router.push('/issues');
+            } catch (e) {
+                console.log(e);
+            }
         }
-    }
 
     return (
         <form
             onSubmit={
                 handleSubmit(data => {
                         console.log(data);
-                        submitHandler(data);
+                        submitHandler(data).then(r => console.log(r));
                     }
                 )
             }
             className="max-w-xl space-y-4"
         >
             <TextField.Root
-                defaultValue={issue?.title}
-                {...register("title", {required: true})}
+                defaultValue={ issue?.title }
+                { ...register("title", {required: true}) }
                 placeholder="Title"
             />
 
             <ErrorMessage>
-                {errors.title?.message}
+                { errors.title?.message }
             </ErrorMessage>
 
             <Controller
                 name="description"
-                control={control}
-                defaultValue={issue?.description}
-                render={({field}) =>
+                control={ control }
+                defaultValue={ issue?.description }
+                render={ ({field}) =>
                     <SimpleMDE
                         placeholder="Description"
-                        {...field}
+                        { ...field }
                     />
                 }
             />
             <ErrorMessage>
-                {errors.description?.message}
+                { errors.description?.message }
             </ErrorMessage>
             <Button
-                disabled={isSubmitting}
+                disabled={ isSubmitting }
                 type="submit"
-                size={"3"}
+                size={ "3" }
                 className="hover:cursor-pointer"
             >
-                {isSubmitting ? <Spinner/> : ""}
-                Submit New Issue
+                { isSubmitting ? <Spinner/> : "" }
+                {issue ? "Update Issue" : "Create Issue"}
             </Button>
         </form>
     )
