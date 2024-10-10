@@ -48,30 +48,36 @@ const IssuesPage = async () => {
                 <Table.Body>
                     {
                         issues.map(issue =>
-                            <Table.Row key={issue.id}>
+                            <Table.Row key={ issue.id }>
                                 <Table.RowHeaderCell>
-                                    {issue.id}
+                                    { issue.id }
                                     <div className="block md:hidden">
                                         <IssueStatusBadge
-                                            status={issue.status}
+                                            status={ issue.status }
                                         />
                                     </div>
                                 </Table.RowHeaderCell>
                                 <Table.Cell className="hidden md:table-cell ">
-                                    <IssueStatusBadge status={issue.status}/>
+                                    <IssueStatusBadge status={ issue.status }/>
                                 </Table.Cell>
                                 <Table.Cell>
-                                    <Link href={`/issues/${issue.id}`} className="hover:cursor-pointer text-blue-500">
-                                        {issue.title}
+                                    <Link
+                                        href={ `/issues/${ issue.id }` }
+                                        className="
+                                            hover:cursor-pointer
+                                            text-blue-500
+                                        "
+                                    >
+                                        { issue.title }
                                     </Link>
                                 </Table.Cell>
                                 <Table.Cell className="prose">
                                     <ReactMarkdown>
-                                        {issue.description}
+                                        { issue.description }
                                     </ReactMarkdown>
                                 </Table.Cell>
                                 <Table.Cell className="hidden md:table-cell ">
-                                    {issue.createdAt.toLocaleDateString('en-UK')}
+                                    { issue.createdAt.toLocaleDateString('en-UK') }
                                 </Table.Cell>
                             </Table.Row>
                         )

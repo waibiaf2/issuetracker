@@ -4,11 +4,11 @@ import IssueActions from "@/app/issues/IssueActions";
 import {Skeleton} from "@/app/components";
 
 const LoadingIssuesPage = () => {
-    const issues = [1,2,3,4,5,6];
+    const issues = [1, 2, 3, 4, 5, 6];
 
     return (
         <div>
-            <IssueActions />
+            <IssueActions/>
             <Table.Root variant="surface">
                 <Table.Header>
                     <Table.Row>
@@ -20,7 +20,7 @@ const LoadingIssuesPage = () => {
                         >
                             Status
                         </Table.ColumnHeaderCell>
-                        <Table.ColumnHeaderCell >
+                        <Table.ColumnHeaderCell>
                             Title
                         </Table.ColumnHeaderCell>
                         <Table.ColumnHeaderCell>
@@ -36,7 +36,7 @@ const LoadingIssuesPage = () => {
                 <Table.Body>
                     {
                         issues.map(issue =>
-                            <Table.Row key={issue}>
+                            <Table.Row key={ issue }>
                                 <Table.RowHeaderCell>
                                     <Skeleton/>
                                 </Table.RowHeaderCell>

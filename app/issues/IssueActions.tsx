@@ -7,7 +7,7 @@ const IssueActions = () => {
         <div className="mb-5">
             <Button size={"3"}>
                 <Link href="/issues/new">
-                    New Issue
+                    Add New Issue
                 </Link>
             </Button>
         </div>
