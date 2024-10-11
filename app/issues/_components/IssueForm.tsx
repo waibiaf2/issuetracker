@@ -1,19 +1,19 @@
 'use client'
 
 import axios from 'axios';
-import "easymde/dist/easymde.min.css";
 import {Controller, useForm} from "react-hook-form";
 import {useRouter} from "next/navigation";
 import {zodResolver} from "@hookform/resolvers/zod";
 // import SimpleMDE from "react-simplemde-editor";
 import {z} from "zod";
+import "easymde/dist/easymde.min.css";
 import dynamic from "next/dynamic";
 
 import {Issue} from "@prisma/client";
 import {Button, Spinner, TextField} from '@radix-ui/themes'
 import {issueSchema} from "@/app/validationSchemas";
 import ErrorMessage from "@/app/components/ErrorMessage";
-import {useState} from "react";
+
 
 const SimpleMDE = dynamic(
     () => import("react-simplemde-editor"),
@@ -47,6 +47,7 @@ const IssueForm = ({issue}: { issue?: Issue }) => {
                 }
 
                 router.push('/issues');
+                router.refresh();
             } catch (e) {
                 console.log(e);
             }
