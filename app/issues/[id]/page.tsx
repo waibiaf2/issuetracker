@@ -26,8 +26,8 @@ const IssueDetailsPage = async (
     }
     
     return (
-        <Grid columns={ {initial: "1", md: "5"} } gap="4">
-            <Box className="lg:col-span-4">
+        <Grid columns={ {initial: "1", sm: "4"} } gap="4">
+            <Box className="md:col-span-3">
                 <IssueDetails issue={ issue }/>
             </Box>
             <Box>

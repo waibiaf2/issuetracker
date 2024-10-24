@@ -4,7 +4,7 @@ import "./globals.css";
 import "./theme-config.css"
 import '@radix-ui/themes/styles.css';
 import NavBar from "@/app/NavBar";
-import {Theme} from "@radix-ui/themes";
+import {Container, Theme} from "@radix-ui/themes";
 
 import {Inter} from 'next/font/google';
 
@@ -25,7 +25,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={inter.variable}>
+        <html lang="en" className={ inter.variable }>
         <body>
         <Theme
             appearance="light"
@@ -33,10 +33,14 @@ export default function RootLayout({
             panelBackground="solid"
         >
             <NavBar/>
+            
             <main className="px-5">
-                {children}
+                <Container>
+                    { children }
+                </Container>
             </main>
-            {/*<ThemePanel/>*/}
+            
+            {/*<ThemePanel/>*/ }
         </Theme>
         </body>
         </html>
