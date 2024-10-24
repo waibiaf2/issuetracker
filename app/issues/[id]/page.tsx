@@ -10,6 +10,7 @@ interface Props {
     params: { id: string }
 }
 
+
 const IssueDetailsPage = async (
     {params}: Props
 ) => {
@@ -20,7 +21,7 @@ const IssueDetailsPage = async (
                 id: parseInt(params.id),
             }
         })
-    
+        
     if (!issue) {
         return notFound();
     }
@@ -31,7 +32,7 @@ const IssueDetailsPage = async (
                 <IssueDetails issue={ issue }/>
             </Box>
             <Box>
-                <Flex direction="column" gap="2">
+                <Flex direction="column" gap="3">
                     <EditIssueButton issueId={ issue.id }/>
                     <DeleteIssueButton issueId={ issue.id }/>
                 </Flex>
