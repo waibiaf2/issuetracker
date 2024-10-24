@@ -6,7 +6,6 @@ import IssueActions from "@/app/issues/IssueActions";
 import {IssueStatusBadge, Link} from "@/app/components";
 
 const IssuesPage = async () => {
-
     const issues =
         await prisma.issue.findMany({
             select: {
@@ -20,12 +19,12 @@ const IssuesPage = async () => {
                 id: 'desc'
             }
         });
-
+    
     return (
         <div>
-
+            
             <IssueActions/>
-
+            
             <Table.Root variant="surface">
                 <Table.Header>
                     <Table.Row>

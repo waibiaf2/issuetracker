@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import {IssueFormSkeleton} from "@/app/issues/new/loading";
+import IssueFormSkeleton from "@/app/issues/new/loading";
 
 const IssueForm = dynamic(
     () => import("@/app/issues/_components/IssueForm"),
