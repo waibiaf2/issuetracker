@@ -1,5 +1,5 @@
 import prisma from "@/prisma/client";
-import {notFound, useRouter} from "next/navigation";
+import {notFound} from "next/navigation";
 import {Box, Flex, Grid} from "@radix-ui/themes";
 import EditIssueButton from "@/app/issues/[id]/EditIssueButton";
 import IssueDetails from "@/app/issues/[id]/IssueDetails";
@@ -14,8 +14,6 @@ const IssueDetailsPage = async (
     {params}: Props
 ) => {
     
-    const router = useRouter();
-    
     const issue =
         await prisma.issue.findUnique({
             where: {
@@ -25,15 +23,6 @@ const IssueDetailsPage = async (
         
     if (!issue) {
         return notFound();
-    }
-    
-    const issueDeleteHandler = async () => {
-        fetch(`/api/issues/${issue.id}`, {
-            method: "DELETE",
-        });
-        
-        router.push(`/issues`);
-        router.refresh();
     }
     
     return (

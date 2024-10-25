@@ -5,13 +5,13 @@ interface AlertProps {
     description: string;
     actionName: string;
     alertTitle: string;
+    deleteIssue: () => void;
 }
 
-const Alert = ({children, description, actionName, alertTitle }: AlertProps) => {
+const Alert = ({children, description, actionName, alertTitle,deleteIssue }: AlertProps) => {
     return (
         <AlertDialog.Root>
             <AlertDialog.Trigger>
-                {/*<Button color="red">Revoke access</Button>*/}
                 {children}
             </AlertDialog.Trigger>
             <AlertDialog.Content maxWidth="450px">
@@ -26,7 +26,7 @@ const Alert = ({children, description, actionName, alertTitle }: AlertProps) => 
                         </Button>
                     </AlertDialog.Cancel>
                     <AlertDialog.Action>
-                        <Button variant="solid" color="red">
+                        <Button variant="solid" color="red" onClick={deleteIssue}>
                             { actionName }
                         </Button>
                     </AlertDialog.Action>
